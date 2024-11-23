@@ -1,36 +1,37 @@
-class Spaceship extends Floater  
-{  
-    public Spaceship() {
-      myCenterX = width/2;
-      myCenterY = height/2;
-      myColor = color(252, 164, 126);
-      corners = 4;
-      xCorners = new int[]{-8, 16, -8, -2};
-      yCorners = new int[]{-8, 0, 8, 0};
-      myXspeed = 0;
-      myYspeed = 0;
-    }
-    public void hyperspace() {
-      myCenterX = (int)(Math.random() * width);
-      myCenterY = (int)(Math.random() * height);
-      myXspeed = 0;
-      myYspeed = 0;
-      turn((int)(Math.random() * 360));
-    }
-    public double getCenterX() {
-      return myCenterX; 
-    }
-    public double getCenterY() {
-      return myCenterY; 
-    }
-    public double getPointDirection() {
-      return myPointDirection;
-    }
-    public double getXspeed() {
-      return myXspeed; 
-    }
-    public double getYspeed() {
-      return myYspeed; 
-    }
+Spaceship ship;
+Star [] nightSky = new Star[100];
+
+void setup() {
+  size(800, 800);
+  ship = new Spaceship();
+  for (int i = 0; i < nightSky.length; i++) 
+    nightSky[i] = new Star();
+  
 }
 
+void draw() {
+  background(10);
+  for (int i = 0; i < nightSky.length; i++) {
+    nightSky[i].show();
+  }
+  ship.show();
+  ship.move();
+  text("myCenterX: " + ship.getCenterX(), 10, 20);
+  text("myCenterY: " + ship.getCenterY(), 10, 40);
+  text("myPointDirection: " + ship.getPointDirection(), 10, 60);
+  text("myXSpeed: " + ship.getXspeed(), 10, 80);
+  text("myYSpeed: " + ship.getYspeed(), 10, 100);
+}
+
+void keyPressed() {
+  if (key == 'w')
+    ship.accelerate(0.5);
+  if (key == 'a') 
+    ship.turn(-10);
+  if (key == 's')
+    ship.accelerate(-0.5);
+  if (key == 'd')
+    ship.turn(10);
+  if (key == 'h')
+    ship.hyperspace();
+}
