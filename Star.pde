@@ -8,7 +8,6 @@ class Star extends Floater
       myColor = color(255);
     }
     public void show() {
-      noStroke();
       fill(myColor);
       ellipse(myX, myY, size, size);
     }
