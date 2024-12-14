@@ -63,6 +63,23 @@ void draw() {
   }
   ship.move();
   ship.show();
+  if (health == 0) {
+    textSize(50);
+    textAlign(CENTER);
+    fill(255, 0, 0);
+    text("GAME OVER!!", width/2, height/2);
+    noLoop();
+  }
+  if (asteroids.size() == 0) {
+    fill(0, 255, 0);
+    text("VICTORY!", width/2, height/2);
+    noLoop();
+  }
+  if (ammo == 0) {
+    fill(255, 0, 0);
+    text("GAME OVER!!", width/2, height/2);
+    noLoop();
+  }
   if (start) {
     for (int i = 0; i < asteroids.size(); i++) {
       if (dist((float)asteroids.get(i).myCenterX, (float)asteroids.get(i).myCenterY, (float)ship.myCenterX, (float)ship.myCenterY) <= 60) {
@@ -91,23 +108,6 @@ void draw() {
     float ammoBarWidth = 55 * (ammo/maxAmmo);
     rect(0, 10, ammoBarWidth, 5);
   popMatrix();
-  if (health == 0) {
-    textSize(50);
-    textAlign(CENTER);
-    fill(255, 0, 0);
-    text("GAME OVER!!", width/2, height/2);
-    noLoop();
-  }
-  if (asteroids.size() == 0) {
-    fill(0, 255, 0);
-    text("VICTORY!", width/2, height/2);
-    noLoop();
-  }
-  if (ammo == 0) {
-    fill(255, 0, 0);
-    text("GAME OVER!!", width/2, height/2);
-    noLoop();
-  }
 }
 
 void keyPressed() {
